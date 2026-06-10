@@ -13,8 +13,11 @@ public class JoyconDemo : MonoBehaviour {
     public int jc_ind = 0;
     public Quaternion orientation;
 
+    Renderer _renderer;
+
     void Start ()
     {
+	    _renderer = gameObject.GetComponent<Renderer>();
         gyro = new Vector3(0, 0, 0);
         accel = new Vector3(0, 0, 0);
         // get the public Joycon array attached to the JoyconManager in scene
@@ -74,9 +77,9 @@ public class JoyconDemo : MonoBehaviour {
 
             orientation = j.GetVector();
 			if (j.GetButton(Joycon.Button.DPAD_UP)){
-				gameObject.GetComponent<Renderer>().material.color = Color.red;
+				_renderer.material.color = Color.red;
 			} else{
-				gameObject.GetComponent<Renderer>().material.color = Color.blue;
+				_renderer.material.color = Color.blue;
 			}
             gameObject.transform.rotation = orientation;
         }
